@@ -20,7 +20,7 @@ plot(Uf, Jf, 'k.'); grid on;
 xlabel('U', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('J', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 title('Функция Бигеляйзена', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 12, 'FontName', 'TimesNewRoman');
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 
 %% Приведенные частоты 
 U1 = zeros(length(T), length(w1));
