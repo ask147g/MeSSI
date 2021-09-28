@@ -1,5 +1,5 @@
-%% Практическая работа 1 по ТКИС...
-..."Изучениеописания программного обеспечения для расчета каскадов и проведения расчетов" 
+%% Практическая работа 1 по ТКРДИС...
+..."Изучение описания программного обеспечения для расчета каскадов и проведения расчетов" 
 clear; clc; format; close all;
 
 %% Данные расчета
@@ -14,26 +14,26 @@ figure(1);
 plot(N, teta, 'k.-'); grid on;
 xlabel('N', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('teta', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('коэффициент деления потока', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 12, 'FontName', 'TimesNewRoman');
+title('Коэффициент деления потока', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 
 figure(2);
 plot(N, X, 'k.-'); grid on;
 xlabel('N', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('X', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('полный коэффициент разделения ступеней', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 12, 'FontName', 'TimesNewRoman');
+title('Полный коэффициент разделения ступеней', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 
 figure(3);
 plot(N, Eeff, 'k.-'); grid on;
 xlabel('N', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('Eeff, r/c', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('эффективная разделительная способность ступеней', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 12, 'FontName', 'TimesNewRoman');
+title('Эффективная разделительная способность ступеней', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 
 figure(4);
 plot(N, Efact, 'k.-'); grid on;
 xlabel('N', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('Efact, r/c', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('фактическая разделительная способность ступеней', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 12, 'FontName', 'TimesNewRoman');
+title('Фактическая разделительная способность ступеней', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
