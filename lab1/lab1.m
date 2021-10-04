@@ -16,6 +16,7 @@ w1 = [3825 1654 3936]; w3 = 1580; w2 = [3816 1648 3919]; w4 = 1490;
 %% Функция Бигеляйзена 
 Uf = 1:0.01:25;
 Jf = 1/2 - 1./Uf + 1 ./ (exp(Uf) - 1);
+figure(1);
 plot(Uf, Jf, 'k.'); grid on;
 xlabel('U', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('J', 'FontSize', 14, 'FontName', 'TimesNewRoman');
@@ -26,14 +27,14 @@ set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 U1 = zeros(length(T), length(w1));
 for k = 1:length(T)
     for i = 1:length(w1)
-        U1(i,k) = 1.44 * w1(i) / T(k);
+        U1(k,i) = 1.44 * w1(i) / T(k);
     end
 end
 
 U2 = zeros(length(T), length(w2));
 for k = 1:length(T)
     for i = 1:length(w2)
-        U2(i,k) = 1.44 * w2(i) / T(k);
+        U2(k,i) = 1.44 * w2(i) / T(k);
     end
 end
 
@@ -99,3 +100,12 @@ for k = 1:length(T)
         alpha(k,i) = f1(k,i) / f2 (k, i);
     end
 end
+
+%% График
+figure(2);
+plot(T, alpha(:,1), 'k.-', T, alpha(:,2), 'ro-', T, alpha(:,3), 'bs-'); grid on;
+xlabel('T, К', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+ylabel('\alpha', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+title('Однократные коэффициенты разделения', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
+legend('w_1', 'w_2', 'w_3');
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
