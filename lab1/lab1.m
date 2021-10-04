@@ -73,8 +73,8 @@ for i = 1:length(U4)
 end
 
 %% Расчет dUi 
-dU1 = U1 - U2;
-dU2 = U3 - U4;
+dU1 = U1 - U4;
+dU2 = U2 - U3;
 
 %% Факторы Бигеляйзена 
 % f1
@@ -82,20 +82,20 @@ f1 = [];
 f2 = [];
 for k = 1:length(T)
     for i = 1:length(dU1)
-        f1(k,i) = J1(k,i)*dU1(k,i)+J3(k,1)*dU2(k,1)+1;
+        f1(k,i) = J1(k,i)*dU1(k,i)+J4(k,1)*dU1(k,1)+1;
     end
 end
 
 % f2
 for k = 1:length(T)
     for i = 1:length(dU1)
-        f2(k,i) = J2(k,i)*dU1(k,i)+J4(k,1)*dU2(k,1)+1;
+        f2(k,i) = J2(k,i)*dU2(k,i)+J3(k,1)*dU2(k,1)+1;
     end
 end
 %% Значения однократного коэффициента разделения
 alpha = [];
 for k = 1:length(T)
     for i = 1:length(dU1)
-        alpha(k,i) = f1(k,i) / f2 (1, k);
+        alpha(k,i) = f1(k,i) / f2 (k, i);
     end
 end
