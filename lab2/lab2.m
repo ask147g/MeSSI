@@ -18,10 +18,18 @@ M2 = 12*2+4+16*2;
 
 %% Зависимость x от y
 plot(y, x, 'ko-'); grid on;
-xlabel('y, %', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-ylabel('x, %', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+lb1 = xlabel('y, %', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+pos1 = get(lb1, 'position');
+pos1(1) = pos1(1) + 55;
+pos1(2) = pos1(2) + 7;
+set(lb1,'position',pos1);
+lb2 = ylabel('x, %', 'FontSize', 14, 'FontName', 'TimesNewRoman', 'rotation', 0);
+pos1 = get(lb2, 'position');
+pos1(2) = pos1(2) + 55;
+pos1(1) = pos1(1) - 5;
+set(lb2,'position',pos1);
 title('Зависимость x от y ', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-set(gca, 'FontSize', 12, 'FontName', 'TimesNewRoman');
+set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 
 %% Массовые доли
 MF = M1*xF + M2*(1-xF);
