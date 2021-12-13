@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/main.cpp
+iostream
+-
+math.h
+/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/math.h
+
