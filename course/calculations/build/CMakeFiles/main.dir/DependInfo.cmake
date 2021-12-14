@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/main.cpp" "/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build/CMakeFiles/main.dir/main.cpp.o"
+  "/home/ask147/Software/programs/MP_DG_course/main.cpp" "/home/ask147/Software/programs/MP_DG_course/build/CMakeFiles/main.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

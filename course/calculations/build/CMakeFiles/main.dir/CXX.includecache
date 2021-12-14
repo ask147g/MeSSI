@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/main.cpp
+/home/ask147/Software/programs/MP_DG_course/main.cpp
 iostream
 -
 math.h
-/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/math.h
+/home/ask147/Software/programs/MP_DG_course/math.h
 

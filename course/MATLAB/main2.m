@@ -66,7 +66,6 @@ for i = 1:N
     Lb(i) = Lin * (1-r/100)^(TT*(i-1));
 end
 L = (Lb + Le) ./ 2;
-% L = rot90(L); L = rot90(L);
 %clear Le Lb;
 
 dC2 = zeros(1,length(dN));
@@ -83,7 +82,6 @@ end
 % k = 0;
 % more = 0;
 % while ((abs(dC2(1)-CW) > 0.0009))
-% % while ((abs(dC2(N+1)-CP) > 0.0009) || (more) || ( dC2(N+1) < CP) || ( dC2(N+1) - dC2(N) < 0) )
 %     more = 0;
 %     Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
 %     Lin = Lin * (1-dh*k);
@@ -137,8 +135,8 @@ dimen = [ceil(nR/TT)/N*0.8+1/8 0.9 0 -0.2];
 a = annotation('arrow','Position',dimen);
 
 
-A = [1 -1; CF -CW];
-B = [P; P*CP];
+A = [1 -1; CF -dC2(1)];
+B = [P; P*dC2(length(dC2))];
 S = linsolve(A,B);
 F = S(1); W=S(2);
 clear S;

@@ -41,24 +41,6 @@ end
 
 Lb = zeros(1,length(dN)-1);
 Le = zeros(1,length(dN)-1);
-% Program
-
-% Lbt = 2 * P * (CP - CF) / (e*CF * (1-CF));
-% Lb(2) = Lbt;
-% for i = 1 : TT * N
-%     Let = (1 - r/100) * Lbt;
-%     if (mod(i, TT) == 1)
-%         Lb(ceil(i/TT)+1) = Lbt;
-%     end
-%     
-%     if (mod(i, TT) == 0)
-%         Le(i/TT+1) = Let;
-%     end
-%     Lbt = Let;
-% end
-% L = (Lb + Le) ./ 2;
-
-% Math
 
 Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
 for i = 1:N
@@ -66,7 +48,7 @@ for i = 1:N
     Lb(i) = Lin * (1-r/100)^(TT*(i-1));
 end
 L = (Lb + Le) ./ 2;
-% L = rot90(L); L = rot90(L);
+%L = rot90(L); L = rot90(L);
 %clear Le Lb;
 
 dC2 = zeros(1,length(dN));
@@ -78,45 +60,46 @@ for i = 2:length(dC2)
     dC2(i) = (x1 * (CW - x2) / (x1 - CW) * exp(e*dN(i)*TT*(x1 - x2)) + x2) / ( 1 + (CW - x2) / (x1 - CW) * exp(e*dN(i)*TT*(x1 - x2)));
 end
 
-% % Change Lin
-% dh = 0.0001;
-% k = 0;
-% more = 0;
-% while ((abs(dC2(N+1)-CP) > 0.00009) || ( dC2(N+1) < CP))
-% % while ((abs(dC2(N+1)-CP) > 0.0009) || (more) || ( dC2(N+1) < CP) || ( dC2(N+1) - dC2(N) < 0) )
-%     more = 0;
-%     Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
-%     Lin = Lin * (1+dh*k);
-% for i = 1:N
-%     Le(i+1) = Lin * (1-r/100)^(TT*i);
-%     Lb(i+1) = Lin * (1-r/100)^(TT*(i-1));
-% end
-% L = (Lb + Le) ./ 2;
-% clear Lin Le Lb;
-% 
-% dC2 = zeros(1,length(dN));
-% dC2(1) = CW;
-% for i = 2:length(dC2)
-%     x1 = 1/2 * (1 + P/(e*L(i))) + sqrt(1/4*(1+P/(e*L(i)))^2 - P * CP / (e*L(i)));
-%     x2 = 1/2 * (1 + P/(e*L(i))) - sqrt(1/4*(1+P/(e*L(i)))^2 - P * CP / (e*L(i)));
-%     dC2(i) = (x1 * (CW - x2) / (x1 - CW) * exp(e*dN(i)*TT*(x1 - x2)) + x2) / ( 1 + (CW - x2) / (x1 - CW) * exp(e*dN(i)*TT*(x1 - x2)));
-%     if (dC2(i) > 1)
-%         more = 1;
-%     end
-% end
-% k = k + 1;
-% if more
-%     continue;
-% end
-% if (L(2) < 0) 
-%     disp('L is less then 0');
-%     break;
-% end
-% end
-% in = 1+dh*k;
-% text = num2str(in,10);
-% text = ['increased in ', text];
-% disp(text);
+% Change Lin
+dh = 0.0001;
+k = 0;
+more = 0;
+while ((abs(dC2(N+1)-CP) > 0.00009) || ( dC2(N+1) < CP))
+% while ((abs(dC2(N+1)-CP) > 0.0009) || (more) || ( dC2(N+1) < CP) || ( dC2(N+1) - dC2(N) < 0) )
+    more = 0;
+    Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
+    Lin = Lin * (1+dh*k);
+for i = 1:N
+    Le(i) = Lin * (1-r/100)^(TT*i);
+    Lb(i) = Lin * (1-r/100)^(TT*(i-1));
+end
+L = (Lb + Le) ./ 2;
+%L = rot90(L); L = rot90(L);
+clear Lin Le Lb;
+
+dC2 = zeros(1,length(dN));
+dC2(1) = CW;
+for i = 2:length(dC2)
+    x1 = 1/2 * (1 + P/(e*L(i-1))) + sqrt(1/4*(1+P/(e*L(i-1)))^2 - P * CP / (e*L(i-1)));
+    x2 = 1/2 * (1 + P/(e*L(i-1))) - sqrt(1/4*(1+P/(e*L(i-1)))^2 - P * CP / (e*L(i-1)));
+    dC2(i) = (x1 * (CW - x2) / (x1 - CW) * exp(e*dN(i)*TT*(x1 - x2)) + x2) / ( 1 + (CW - x2) / (x1 - CW) * exp(e*dN(i)*TT*(x1 - x2)));
+    if (dC2(i) > 1)
+        more = 1;
+    end
+end
+k = k + 1;
+if more
+    continue;
+end
+if (L(2) < 0) 
+    disp('L is less then 0');
+    break;
+end
+end
+in = 1+dh*k;
+text = num2str(in,10);
+text = ['increased in ', text];
+disp(text);
 
 % plot dC2 from N, where dC2 calculated with P
 % figure(2);
@@ -126,7 +109,7 @@ end
 % title('dC2(N)', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
 % set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
 
-figure(3);
+figure(1);
 plot(dN, dC1, 'k-o', dN, dC2, 'r-o'); grid on;
 xlabel('N', 'FontSize', 14, 'FontName', 'TimesNewRoman');
 ylabel('C', 'FontSize', 14, 'FontName', 'TimesNewRoman');

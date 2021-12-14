@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course
+CMAKE_SOURCE_DIR = /home/ask147/Software/programs/MP_DG_course
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build
+CMAKE_BINARY_DIR = /home/ask147/Software/programs/MP_DG_course/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,7 +100,7 @@ test/fast: test
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/ask147/Software/programs/MP_DG_course/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -132,9 +132,9 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build/CMakeFiles /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ask147/Software/programs/MP_DG_course/build/CMakeFiles /home/ask147/Software/programs/MP_DG_course/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ask147/Software/programs/MP_DG_course/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

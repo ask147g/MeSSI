@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course
-BuildDirectory: /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course/build
+SourceDirectory: /home/ask147/Software/programs/MP_DG_course
+BuildDirectory: /home/ask147/Software/programs/MP_DG_course/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -14,7 +14,7 @@ CostDataFile:
 Site: GP72VR-7RFX
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-c++
+BuildName: Linux-x86_64-linux-gnu-g++-10
 
 # Subprojects
 LabelsForSubprojects: 
@@ -26,7 +26,7 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP_DG/course/MP_DG_course"
+ConfigureCommand: "/usr/bin/cmake" "/home/ask147/Software/programs/MP_DG_course"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
@@ -62,8 +62,8 @@ UpdateOptions:
 UpdateType: 
 
 # Compiler info
-Compiler: /usr/bin/c++
-CompilerVersion: 11.2.0
+Compiler: /bin/x86_64-linux-gnu-g++-10
+CompilerVersion: 10.3.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
