@@ -62,10 +62,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ask147/Software/programs/MP_DG_course
+CMAKE_SOURCE_DIR = /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ask147/Software/programs/MP_DG_course/build
+CMAKE_BINARY_DIR = /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/build
 
 # Utility rule file for ExperimentalMemCheck.
 
@@ -90,6 +90,6 @@ CMakeFiles/ExperimentalMemCheck.dir/clean:
 .PHONY : CMakeFiles/ExperimentalMemCheck.dir/clean
 
 CMakeFiles/ExperimentalMemCheck.dir/depend:
-	cd /home/ask147/Software/programs/MP_DG_course/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ask147/Software/programs/MP_DG_course /home/ask147/Software/programs/MP_DG_course /home/ask147/Software/programs/MP_DG_course/build /home/ask147/Software/programs/MP_DG_course/build /home/ask147/Software/programs/MP_DG_course/build/CMakeFiles/ExperimentalMemCheck.dir/DependInfo.cmake --color=$(COLOR)
+	cd /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/build /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/build /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/build/CMakeFiles/ExperimentalMemCheck.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalMemCheck.dir/depend
 

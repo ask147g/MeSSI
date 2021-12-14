@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/ask147/Software/programs/MP_DG_course
-BuildDirectory: /home/ask147/Software/programs/MP_DG_course/build
+SourceDirectory: /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations
+BuildDirectory: /media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -26,7 +26,7 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/ask147/Software/programs/MP_DG_course"
+ConfigureCommand: "/usr/bin/cmake" "/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 
