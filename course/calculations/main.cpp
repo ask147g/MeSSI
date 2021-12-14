@@ -1,3 +1,7 @@
+/*
+Course project discipline "Interdisciplinary Project"
+*/
+
 #include <iostream>
 #include <fstream>
 #include "math.h"
@@ -14,9 +18,9 @@ double P = 150; // kg per year
 int main()
 {
 	std::cout << "Calculations start" << std::endl;
+    std::cout << std::endl;
 	const double mu = (CP*7.0+(1-CP)*6.0)*pow(10, -3);
     P = P/mu/(365.0*24.0); // mol per hour
-    std::cout<<P<<std::endl;
     double e = 4755.0/pow((T+273), 2) - 0.803 / (T+273);
     double nE = 2.0/e*log(CP*(1.0-CF)/(CF*(1.0-CP))); nE = ceil(nE);
     double nR = 2.0/e*log(CF*(1.0-CW)/(CW*(1.0-CF))); nR = ceil(nR);
@@ -89,7 +93,7 @@ int main()
         }
     }
 
-    // output in terminal
+    // output into terminal
     std::cout<< "Lin is increased in " << 1 - k*dh << std::endl;
     std::cout << std::endl;
     std::cout << "N " << "L, mol/h  " << "C1    " << "C2" << std::endl;
@@ -99,7 +103,7 @@ int main()
         std::cout << dN[i] << " " << L[i-1] << "    " <<  dC1[i] << "   " << dC2[i] << std::endl;
     } 
 
-    // output in file
+    // output into file
     std::ofstream out("output.txt", std::ios_base::out | std::ios_base::trunc);
     if (!out.is_open())
     {
