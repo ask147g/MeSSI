@@ -10,7 +10,9 @@
 	{
 		"commands" : 
 		[
-			"add_executable"
+			"add_executable",
+			"target_link_libraries",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -24,7 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 7,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 10,
 				"parent" : 0
 			}
 		]
@@ -32,6 +46,17 @@
 	"compileGroups" : 
 	[
 		{
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/usr/include/python3.9"
+				}
+			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
@@ -47,6 +72,21 @@
 			{
 				"fragment" : "-rdynamic",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lX11",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lpython3.9",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"

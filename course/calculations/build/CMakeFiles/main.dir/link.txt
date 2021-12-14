@@ -1,1 +1,1 @@
-/bin/x86_64-linux-gnu-g++-10 -rdynamic CMakeFiles/main.dir/main.cpp.o -o main 
+/bin/x86_64-linux-gnu-g++-10 -rdynamic CMakeFiles/main.dir/main.cpp.o -o main  -lX11 -lpthread -lpython3.9 

@@ -4,7 +4,7 @@
 # compile CXX with /bin/x86_64-linux-gnu-g++-10
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/media/ask147/WINDOWS/Users/Anna/Documents/MATLAB/MP/course/calculations/include -I/usr/include/python3.9
 
 CXX_FLAGS = 
 

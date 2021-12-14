@@ -4,7 +4,10 @@ Course project discipline "Interdisciplinary Project"
 
 #include <iostream>
 #include <fstream>
-#include "math.h"
+#include <cmath>
+#include "matplotlibcpp.h"
+#include <vector>
+namespace plt = matplotlibcpp;
 
 const double T = 15; // Celsius
 const double CW = 0.9;
@@ -14,12 +17,11 @@ const double r = 0.5; // per cents
 const double N = 20;
 double P = 150; // kg per year
 
-
 int main()
 {
-	std::cout << "Calculations start" << std::endl;
+    std::cout << "Calculations start" << std::endl;
     std::cout << std::endl;
-	const double mu = (CP*7.0+(1-CP)*6.0)*pow(10, -3);
+    const double mu = (CP*7.0+(1-CP)*6.0)*pow(10, -3);
     P = P/mu/(365.0*24.0); // mol per hour
     double e = 4755.0/pow((T+273), 2) - 0.803 / (T+273);
     double nE = 2.0/e*log(CP*(1.0-CF)/(CF*(1.0-CP))); nE = ceil(nE);
@@ -123,5 +125,40 @@ int main()
 
     std::cout << std::endl;
     std::cout << "Calculations end" << std::endl;
-	return 0;
+    
+    std::vector <double> y1(Nc);
+    std::vector <double> y2(Nc);
+    std::vector <double> x(Nc);
+    std::vector <double> y(2*Nc);
+    for (int i = 0; i < Nc; i++)
+    {
+    	y1.at(i) = dC1[i];
+    	y2.at(i) = dC2[i];
+    	x.at(i) = i;
+        if (abs(dC1 - dC2) > 0.1)
+        {
+            y.at(2*i) = dC1[i];
+            y.at(2*i+1) = dC2[i];
+        }
+        else
+        {
+            y.at(2*i) = dC2[i];
+            y.at(2*i+1) = dC2[i];
+        }
+    }
+    plt::figure();
+    plt::plot(x,y1,{{"label", "C1"}, {"linestyle", "--"}, {"marker", "s"}, {"color", "r"}});
+    plt::xticks(x);
+    plt::yticks(y);
+    plt::plot(x,y2,{{"label", "C2"}, {"linestyle", "-"}, {"marker", "o"}, {"color", "k"}});
+    plt::ylim(CW-0.001, 1.0);
+    plt::grid(1);
+    plt::xlim(0,Nc-1);
+    plt::title("CONCENTRATION CHANGE",{{"color", "k"}});
+    plt::xlabel("N, column");
+    plt::ylabel("C");
+    plt::legend();
+    plt::show();
+    plt::save("result.pdf");
+    return 0;
 }
