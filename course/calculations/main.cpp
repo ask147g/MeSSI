@@ -7,6 +7,7 @@ Course project discipline "Interdisciplinary Project"
 #include <cmath>
 #include "matplotlibcpp.h"
 #include <vector>
+
 namespace plt = matplotlibcpp;
 
 const double T = 15; // Celsius
@@ -29,17 +30,17 @@ int main()
     double nB = nE + nR;
     const int Nc = ceil(nB/N);
 
-    double dN[Nc];
-    for (int i = 0; i < Nc; i++)
+    double dN[Nc+1];
+    for (int i = 0; i <= Nc; i++)
     {
-        dN[i] = i+1;
+        dN[i] = i;
     } 
 
     double dC1[Nc+1]; dC1[0] = CW;
-    double dC2[Nc+1]; dC2[Nc] = CP;
+    double dC2[Nc+1]; dC2[Nc+1] = CP;
     
     // without P
-    for (int i = 1; i < Nc; i++)
+    for (int i = 1; i <= Nc; i++)
     {
         dC1[i] = (CW/(1-CW)*exp(e*i*N)) / (1.0 + CW/(1-CW)*exp(e*i*N));
     }
@@ -50,7 +51,7 @@ int main()
     double L[Nc];
 
     double Lin = 2.0*P*(CP-CF)/(e*CF*(1.0-CF));
-    for (int i = 0; i < Nc; i++)
+    for (int i = 0; i <= Nc; i++)
     {
         Lb[i] = Lin * pow((1.0-r/100.0), N*i);
         Le[i] = Lin * pow((1.0-r/100.0), N*(i+1));
@@ -58,13 +59,14 @@ int main()
     }
 
     double x1, x2;
-    for (int i = 0; i < Nc; i++)
+    for (int i = 0; i <= Nc; i++)
     {
         x1 = 0.5 * (1.0 + P/(e*L[i])) + sqrt(0.25*(pow(1.0 + P/(e*L[i]), 2.0)) - P * CP / (e*L[i]));
         x2 = 0.5 * (1.0 + P/(e*L[i])) - sqrt(0.25*(pow(1.0 + P/(e*L[i]), 2.0)) - P * CP / (e*L[i]));
         dC2[i] = (x2 * (x1 - CP) / (CP - x2) * exp(e*(Nc-i)*N*(x1 - x2)) + x1) / (1 + (x1 - CP) / (CP - x2) * exp(e*(Nc-i)*N*(x1 - x2)));
     }
 
+    
     // changing Lin
     double dh = 0.0001;
     int k = 0;
@@ -72,7 +74,7 @@ int main()
     {
         Lin = 2.0*P*(CP-CF)/(e*CF*(1.0-CF));
         Lin = Lin * (1-k*dh);
-        for (int i = 0; i < Nc; i++)
+        for (int i = 0; i <= Nc; i++)
         {
             Lb[i] = Lin * pow((1.0-r/100.0), N*i);
             Le[i] = Lin * pow((1.0-r/100.0), N*(i+1));
@@ -80,7 +82,7 @@ int main()
         }
 
         x1, x2;
-        for (int i = 0; i < Nc; i++)
+        for (int i = 0; i <= Nc; i++)
         {
             x1 = 0.5 * (1.0 + P/(e*L[i])) + sqrt(0.25*(pow(1.0 + P/(e*L[i]), 2.0)) - P * CP / (e*L[i]));
             x2 = 0.5 * (1.0 + P/(e*L[i])) - sqrt(0.25*(pow(1.0 + P/(e*L[i]), 2.0)) - P * CP / (e*L[i]));
@@ -94,13 +96,15 @@ int main()
             break;
         }
     }
+    
+    std::cout << Nc <<std::endl;
 
     // output into terminal
     std::cout<< "Lin is increased in " << 1 - k*dh << std::endl;
     std::cout << std::endl;
     std::cout << "N " << "L, mol/h  " << "C1    " << "C2" << std::endl;
     std::cout << dN[0] << " " << "- " <<  dC1[0] << "   " << dC2[0] << std::endl;
-    for (int i = 1; i < Nc; i++)
+    for (int i = 1; i <= Nc; i++)
     {
         std::cout << dN[i] << " " << L[i-1] << "    " <<  dC1[i] << "   " << dC2[i] << std::endl;
     } 
@@ -117,7 +121,7 @@ int main()
         out << std::endl;
         out << "N   " << "L, mol/h  " << "C1    " << "C2" << std::endl;
         out << dN[0] << " " << "- " <<  dC1[0] << "   " << dC2[0] << std::endl;
-        for (int i = 1; i < Nc; i++)
+        for (int i = 1; i <= Nc; i++)
         {
             out << dN[i] << " " << L[i-1] << "    " <<  dC1[i] << "   " << dC2[i] << std::endl;
         } 
@@ -126,16 +130,16 @@ int main()
     std::cout << std::endl;
     std::cout << "Calculations end" << std::endl;
     
-    std::vector <double> y1(Nc);
-    std::vector <double> y2(Nc);
-    std::vector <double> x(Nc);
-    std::vector <double> y(2*Nc);
-    for (int i = 0; i < Nc; i++)
+    std::vector <double> y1(Nc+1);
+    std::vector <double> y2(Nc+1);
+    std::vector <double> x(Nc+1);
+    std::vector <double> y(2*Nc+2);
+    for (int i = 0; i <= Nc; i++)
     {
     	y1.at(i) = dC1[i];
     	y2.at(i) = dC2[i];
     	x.at(i) = i;
-        if (abs(dC1 - dC2) > 0.1)
+        if (abs(dC1[i] - dC2[i]) > 0.03)
         {
             y.at(2*i) = dC1[i];
             y.at(2*i+1) = dC2[i];
@@ -146,7 +150,10 @@ int main()
             y.at(2*i+1) = dC2[i];
         }
     }
-    plt::figure();
+    y.at(2*Nc+1) = dC1[Nc];
+    
+    //plt::figure();
+    plt::figure_size(800,500);
     plt::plot(x,y1,{{"label", "C1"}, {"linestyle", "--"}, {"marker", "s"}, {"color", "r"}});
     plt::xticks(x);
     plt::yticks(y);
@@ -158,7 +165,8 @@ int main()
     plt::xlabel("N, column");
     plt::ylabel("C");
     plt::legend();
+    plt::save("result.tiff");
     plt::show();
-    plt::save("result.pdf");
+    
     return 0;
 }

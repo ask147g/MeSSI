@@ -65,7 +65,7 @@ end
 dh = 0.0001;
 k = 0;
 more = 0;
-while ((abs(dC2(1)-CW) > 0.0009))
+while ((abs(dC2(1)-CW) > 0.00009))
     more = 0;
     Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
     Lin = Lin * (1-dh*k);
