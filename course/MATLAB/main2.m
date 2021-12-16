@@ -65,7 +65,7 @@ end
 dh = 0.0001;
 k = 0;
 more = 0;
-while ((abs(dC2(1)-CW) > 0.00009))
+while ((abs(dC2(1)-CW) > 0.00009) || dC2(1) < CW)
     more = 0;
     Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
     Lin = Lin * (1-dh*k);
@@ -74,7 +74,7 @@ for i = 1:N
     Lb(i+1) = Lin * (1-r/100)^(TT*(i-1));
 end
 L = (Lb + Le) ./ 2;
-clear Lin Le Lb;
+%clear Lin Le Lb;
 
 dC2 = zeros(1,length(dN));
 dC2(N+1) = CP;

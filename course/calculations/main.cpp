@@ -1,5 +1,6 @@
 /*
 Course project discipline "Interdisciplinary Project"
+Enrichment Li7
 */
 
 #include <iostream>
@@ -14,7 +15,7 @@ const double T = 15; // Celsius
 const double CW = 0.9;
 const double CF = 0.925;
 const double CP = 0.995;
-const double r = 0.5; // per cents
+const double r = 0.5; // percents
 const double N = 20;
 double P = 150; // kg per year
 
@@ -65,12 +66,11 @@ int main()
         x2 = 0.5 * (1.0 + P/(e*L[i])) - sqrt(0.25*(pow(1.0 + P/(e*L[i]), 2.0)) - P * CP / (e*L[i]));
         dC2[i] = (x2 * (x1 - CP) / (CP - x2) * exp(e*(Nc-i)*N*(x1 - x2)) + x1) / (1 + (x1 - CP) / (CP - x2) * exp(e*(Nc-i)*N*(x1 - x2)));
     }
-
     
     // changing Lin
     double dh = 0.0001;
     int k = 0;
-    while (abs(dC2[0]-CW) > 0.00009)
+    while ((abs(dC2[0]-CW) > 0.00009) || (dC2[0] < CW))
     {
         Lin = 2.0*P*(CP-CF)/(e*CF*(1.0-CF));
         Lin = Lin * (1-k*dh);
@@ -92,7 +92,7 @@ int main()
 
         if (1 - k*dh < 0)
         {
-            std::cout << "Error, too much increasion Lin: 1-k*dh < 0" << std::endl;
+            std::cout << "Error, too much increasing Lin: 1-k*dh < 0" << std::endl;
             break;
         }
     }
@@ -127,9 +127,23 @@ int main()
         } 
     }
 
+	std::cout << std::endl;
+	double W = P * (CP - CF) / (CF - CW);
+	double F = P + F;
+	std::cout << "W is " << W << std::endl;
+	std::cout << "F is " << F << std::endl;
+	if (out.is_open)
+	{
+		out << std::endl;
+		out << "W is " << W << std::endl;
+		out << "F is " << F << std::endl;
+		out.close();
+	}
+
     std::cout << std::endl;
     std::cout << "Calculations end" << std::endl;
     
+	// plot a graph using matplotlibcpp
     std::vector <double> y1(Nc+1);
     std::vector <double> y2(Nc+1);
     std::vector <double> x(Nc+1);
@@ -152,15 +166,14 @@ int main()
     }
     y.at(2*Nc+1) = dC1[Nc];
     
-    //plt::figure();
     plt::figure_size(800,500);
     plt::plot(x,y1,{{"label", "C1"}, {"linestyle", "--"}, {"marker", "s"}, {"color", "r"}});
     plt::xticks(x);
     plt::yticks(y);
     plt::plot(x,y2,{{"label", "C2"}, {"linestyle", "-"}, {"marker", "o"}, {"color", "k"}});
-    plt::ylim(CW-0.001, 1.0);
+    plt::ylim(CW-0.001, 1.0001);
     plt::grid(1);
-    plt::xlim(0,Nc-1);
+    plt::xlim(0,Nc);
     plt::title("CONCENTRATION CHANGE",{{"color", "k"}});
     plt::xlabel("N, column");
     plt::ylabel("C");

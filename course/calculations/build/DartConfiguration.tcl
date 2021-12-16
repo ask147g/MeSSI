@@ -14,7 +14,7 @@ CostDataFile:
 Site: GP72VR-7RFX
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-x86_64-linux-gnu-g++-10
+BuildName: Linux-c++
 
 # Subprojects
 LabelsForSubprojects: 
@@ -62,8 +62,8 @@ UpdateOptions:
 UpdateType: 
 
 # Compiler info
-Compiler: /bin/x86_64-linux-gnu-g++-10
-CompilerVersion: 10.3.0
+Compiler: /usr/bin/c++
+CompilerVersion: 11.2.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
