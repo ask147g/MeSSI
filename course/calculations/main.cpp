@@ -81,7 +81,6 @@ int main()
             L[i] = (Lb[i] + Le[i]) / 2.0;
         }
 
-        x1, x2;
         for (int i = 0; i <= Nc; i++)
         {
             x1 = 0.5 * (1.0 + P/(e*L[i])) + sqrt(0.25*(pow(1.0 + P/(e*L[i]), 2.0)) - P * CP / (e*L[i]));
@@ -128,11 +127,11 @@ int main()
     }
 
 	std::cout << std::endl;
-	double W = P * (CP - CF) / (CF - CW);
-	double F = P + F;
+	double W = P * (dC2[Nc] - CF) / (CF - dC2[0]);
+	double F = P + W;
 	std::cout << "W is " << W << std::endl;
 	std::cout << "F is " << F << std::endl;
-	if (out.is_open)
+	if (out.is_open())
 	{
 		out << std::endl;
 		out << "W is " << W << std::endl;
