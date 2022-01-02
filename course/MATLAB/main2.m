@@ -3,9 +3,9 @@
 clear; clc; format; close all;
 
 %% Initial data
-T = 15; % Celsius
-CW = 0.9;
-P = 150; % kg/y
+T = 25; % Celsius
+CW = 0.86;
+P = 100; % kg/y
 
 CF = 0.925;
 CP = 0.995;
@@ -56,10 +56,10 @@ for i = 2:length(dC2)
 end
 
 % Change Lin
-dh = 0.0001;
+dh = 0.00001;
 k = 0;
 more = 0;
-while ((abs(dC2(1)-CW) > 0.00009) || dC2(1) < CW)
+while ((abs(dC2(1)-CW) > 0.000009) || dC2(1) < CW)
     more = 0;
     Lin = 2 * P * (CP - CF) / (e*CF * (1-CF));
     Lin = Lin * (1-dh*k);
@@ -89,7 +89,7 @@ if (L(2) < 0)
     break;
 end
 end
-in = 1-dh*k;
+in = 2*(1-dh*k);
 text = num2str(in,10);
 text = ['increased in ', text];
 disp(text);
