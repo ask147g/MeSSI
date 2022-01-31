@@ -1,54 +1,31 @@
-%% Лабораторная работа 3 по дисциплине "Междисципоинарный проект"...
-..."Изучение кинетики реакции разложения пероксида водорода"
-clear; clc; format; close all;
+%% Изучение закономерности распределения газов во вращающемся роторе центрифуги
+clear; clc; format("default"); close all;
 
-%% Экспериментальные данные
-t = [0 0.5 1 1.5 2 2.5 3 4 5 6 8 10 12 15];
-V = [3 6.4 8.3 9.7 11 12.1 13 14.6 16 17 18.5 19.5 20.4 21.2];
-Vinf = 24;
+%% Данные
+F = [24, 22, 6, 20, 50, 170, 90, 70, 150];
+ro = [7.86, 8.00, 2.70, 2.73, 8.90, 7.85, 4.6, 1.9, 1.33];
+v = 1500;
 
 %% Расчет
-dV = Vinf - V; % 0
-logdV = log(dV); % 1
-div = 1./dV; % 2
+u = sqrt(9.8*10^3.*F./ro);
+r = u./(2*pi()*v);
 
-%% Графики
-figure(1);
-plot(t, dV, 'k.-'); grid on;
-xlabel('t, min', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-ylabel('V_i_n_f-V', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('Реакция нулевого порядка', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
-
-figure(2);
-plot(t, logdV, 'k.-'); grid on;
-xlabel('t, min', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-ylabel('ln(V_i_n_f-V)', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('Реакция первого порядка', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
-
-figure(3);
-plot(t, div, 'k.-'); grid on;
-xlabel('t, min', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-ylabel('1/(V_i_n_f-V)', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-title('Реакция второго порядка', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
-
-%% Аппроксимация
-p = polyfit(t(5:length(t)-4),logdV(5:length(t)-4),1); % linear
-y0 = polyval(p,0:0.1:15);
-
-figure(4);
-plot(t, logdV, 'ko'); grid on;
-xlabel('t, min', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-ylabel('ln(V_i_n_f-V)', 'FontSize', 14, 'FontName', 'TimesNewRoman');
-hold on;
-plot(0:0.1:15, y0, 'r.-'); hold off;
-k = num2str(p(1));
-c = num2str(p(2));
-k_text = ['y=', k, 'x+', c];
-text(9, 3.1, k_text,'FontSize', 14, 'FontName', 'Times New Roman'); % менять
-title('Реакция первого порядка', 'FontSize', 14, 'FontName', 'TimesNewRoman'); 
-set(gca, 'FontSize', 14, 'FontName', 'TimesNewRoman');
-
-half_life = -0.693/p(1);
+mu1 = 0.132;
+mu2 = 0.134;
+T = 300;
+L = 0.6;
+R = 8.32;
+ra = 0.06;
+raq = 0:0.01:0.1;
+eta = 4*10^(-5)*sqrt((mu1+mu2)/(2*T));
+qr = 27/16*pi()^5*eta*L*((mu2-mu1)/(R*T))^2.*(v*raq).^4;
+figure();
+plot(raq,qr); grid on;
+xlabel('r_a, м', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+ylabel('q, кг/с', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+Lq = 0:0.01:1;
+qL = 27/16*pi()^5*eta.*Lq.*((mu2-mu1)/(R*T))^2*(v*ra)^4;
+figure();
+plot(Lq, qL); grid on;
+xlabel('L, м', 'FontSize', 14, 'FontName', 'TimesNewRoman');
+ylabel('q, кг/с', 'FontSize', 14, 'FontName', 'TimesNewRoman');
